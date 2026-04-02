@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+.venv/
+*.log
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+
+# Terraform and Pulumi
+*.tfstate
+*.tfstate.*
+.terraform/
+terraform.tfvars
+pulumi/venv/
+Pulumi.*.yaml
