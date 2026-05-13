@@ -1,0 +1,47 @@
+replicaCount: 1
+
+app:
+  environment: "dev"
+  logLevel: "debug"
+
+config:
+  env:
+    APP_ENV: "dev"
+    LOG_LEVEL: "debug"
+    APP_DISPLAY_NAME: "DevOps Info Service Dev"
+    FEATURE_VISITS_ENABLED: "true"
+    FEATURE_CONFIG_HOT_RELOAD: "true"
+    APP_CONFIG_PATH: "/config/config.json"
+    VISITS_FILE: "/data/visits"
+
+image:
+  tag: "latest"
+
+service:
+  type: NodePort
+  nodePort: 30091
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 64Mi
+  limits:
+    cpu: 100m
+    memory: 128Mi
+
+livenessProbe:
+  initialDelaySeconds: 5
+  periodSeconds: 10
+
+readinessProbe:
+  initialDelaySeconds: 3
+  periodSeconds: 5
+
+secret:
+  data:
+    username: "dev-user"
+    password: "dev-password"
+
+persistence:
+  size: "100Mi"
+  storageClass: ""
