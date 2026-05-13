@@ -1,0 +1,47 @@
+replicaCount: 3
+
+app:
+  environment: "prod"
+  logLevel: "warn"
+
+config:
+  env:
+    APP_ENV: "prod"
+    LOG_LEVEL: "warn"
+    APP_DISPLAY_NAME: "DevOps Info Service Prod"
+    FEATURE_VISITS_ENABLED: "true"
+    FEATURE_CONFIG_HOT_RELOAD: "true"
+    APP_CONFIG_PATH: "/config/config.json"
+    VISITS_FILE: "/data/visits"
+
+image:
+  tag: "1.0.0"
+
+service:
+  type: LoadBalancer
+  nodePort: null
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+livenessProbe:
+  initialDelaySeconds: 30
+  periodSeconds: 5
+
+readinessProbe:
+  initialDelaySeconds: 10
+  periodSeconds: 3
+
+secret:
+  data:
+    username: "prod-user"
+    password: "prod-password"
+
+persistence:
+  size: "250Mi"
+  storageClass: ""
